@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Top Git</title>    
+    <script src="js/angular.js"></script>    
+    <script src="js/topgit.js"></script>
+    <link rel="stylesheet"  href="style/topgit.css">
+</head>
+<body>
+    <div ng-app = "myModule" ng-controller ="myController">
+	  	<div>
+	      		{{message}}
+	  	</div>
+	  	<br /><br />
+	  	<table>
+	  		<thead>
+	  			<th> Name </th>
+	  			<th> DOB </th>
+				<th> Gender	</th>
+	  			<th> Salary </th>
+	  		</thead>
+	  		
+	  		<tbody>
+	  			<tr><td>Abhishek</td><td>14/01/1990</td><td>Male</td><td>16000</td></tr>
+	  			<tr><td>Neha</td><td>14/06/1990</td><td>Female</td><td>16000</td></tr>
+	  			<tr><td>Sita</td><td>24/09/1990</td><td>Male</td><td>16000</td></tr>
+	  		</tbody> 
+	  	</table>
+	  	
+	  	<br /><br />
+	  	
+	  	Row limit : <input type="number" min="1" max="5" step="1" ng-model="rowLimit">
+	  	
+	  	SortBy : <select ng-model="sortBy">	  					
+	  					<optgroup>
+	  						<option value="name">Name</option>
+	  						<option value="dob">DOB</option>
+	  						<option value="gender">Gender</option>
+	  						<option value="salary"> Salary</option>
+	  					</optgroup>
+	  			</select>
+	  	<table>
+	  		
+	  		<thead>
+	  			<th ng-click="sortByColumn ('name')"> Name   <div ng-class="getsortClass('name')"></div> </th>
+	  			<th ng-click="sortByColumn ('dob')"> DOB    <div ng-class="getsortClass('dob')"></div> </th>
+				<th ng-click="sortByColumn ('gender')"> Gender	<div ng-class="getsortClass('gender')"></div> </th>
+	  			<th ng-click="sortByColumn ('salary')"> Salary <div ng-class="getsortClass('salary')"></div> </th>
+	  			<th ng-click="sortByColumn ('salary')"> Salary <div ng-class="getsortClass('salary')"></div> </th>
+	  		</thead>
+
+	  		
+	  		<tbody ng-repeat="employee in employees | orderBy : sortColumn">
+	  			<tr > 
+	  				<td> {{employee.name | uppercase}} </td>
+	  				<td> {{employee.dob | date : "dd/MM/yy"}} </td>
+	  				<td> {{employee.gender | lowercase}} </td>
+	  				<td> {{employee.salary | number:2 }} </td>
+	  				<td> {{employee.salary | currency:'P':1}} </td>
+
+	  			</tr>
+	  		</tbody>
+	  	</table>
+	  	
+	  	<br /><br />
+	  	<table>
+	  		
+	  		<thead>
+	  			<th> Name </th>
+	  			<th> Like </th>
+				<th> Dislike </th>	
+				<th> Like/Dislike </th>  			
+	  		</thead>
+
+	  		
+	  		<tbody ng-repeat="technology in technologies">
+	  			<tr > 
+	  				<td> {{technology.name}} </td>
+	  				<td> {{technology.likes}} </td>
+	  				<td> {{technology.dislikes}} </td>	
+	  				<td>
+	  					<input type="button" value="Like" ng-click="incrementLike(technology)">
+	  					<input type="button" value="Dislike" ng-click="incrementDislike(technology)">
+	  				</td> 				
+	  			</tr>
+	  		</tbody>
+	  	</table>
+
+  	
+    </div>
+</body>
+</html>
