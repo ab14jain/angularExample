@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="js/angular.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/stringService.js"></script>
+    <link href="style/topgit.css" rel="stylesheet" />
+</head>
+<body>
+    <p>ng-include</p>
+        
+        <div ng-app="myModule">
+
+            <div ng-controller="myController">
+                <button id="Top" ng-click="scrollTo('Bottom')">To Bottom</button>
+                <br />
+                <br /> 
+                {{greeting}}
+
+                Current View
+                <select ng-model="currentView">
+                    <option value="Table.html">Table</option>
+                    <option value="list.html">List</option>
+                </select>
+                <div ng-include="currentView"></div>
+            
+                <table>                    
+                    <tbody>
+                        <tr ng-repeat="topGit in topGits">
+                            <td>{{topGit.created_at | date : "dd/MM/yyyy"}}</td>
+                            <td>{{topGit.forks}}</td>
+                            <td>{{topGit.name}}</td>
+                            <td>{{topGit.language}}</td>                            
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p>{{output}}</p>
+
+                <button id="Bottom" ng-click="scrollTo('Top')">To Top</button>
+            </div>
+            
+        </div>
+
+</body>
+</html>
